@@ -1,0 +1,178 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  super_admin
+  registrar
+  viewer
+}
+
+model Admin {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      Role     @default(registrar)
+  school    School?  @relation(fields: [schoolId], references: [id])
+  schoolId  String?
+  logs      AuditLog[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Application {
+  id               String   @id @default(cuid())
+  trackingCode     String   @unique
+  studentName      String
+  middleName       String?
+  studentGrade     String
+  dateOfBirth      DateTime
+  gender           String
+  address          String
+  previousSchool   String?
+  medicalInfo      String?
+  parentName       String
+  parentEmail      String
+  parentPhone      String?
+  familyPhone      String?
+  locationLink     String?
+  priorityFlags    Json?    @default("[]")
+  status           String   @default("waiting")
+  notes            String?  // Parent-provided notes
+  internalNotes    String?  // Admin-provided notes
+  school           School?  @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  schoolId         String?
+  class            Class?   @relation(fields: [classId], references: [id])
+  classId          String?
+  
+  // Enhanced Student Information
+  studentPhoto         String?
+  preferredName        String?
+  
+  // Emergency Contacts
+  emergencyContact1Name      String?
+  emergencyContact1Phone     String?
+  emergencyContact1Relation  String?
+  emergencyContact2Name      String?
+  emergencyContact2Phone     String?
+  emergencyContact2Relation  String?
+  
+  // Health & Special Needs
+  allergies                  String?
+  medicalConditions          String?
+  dietaryRestrictions        String?
+  specialAccommodations      String?
+  
+  // Family & Siblings
+  siblingsAtSchool           String?
+  
+  // Transportation & Preferences
+  transportationMethod       String?
+  preferredLanguage          String?
+  
+  // Documents
+  academicRecords            String?
+  
+  documents        Document[]
+  logs             AuditLog[]
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([trackingCode])
+  @@index([parentPhone, studentName])
+  @@index([schoolId])
+}
+
+model Document {
+  id            String      @id @default(cuid())
+  name          String
+  url           String
+  type          String
+  application   Application @relation(fields: [applicationId], references: [id])
+  applicationId String
+  createdAt     DateTime    @default(now())
+}
+
+model AuditLog {
+  id            String       @id @default(cuid())
+  action        String
+  details       String?
+  admin         Admin        @relation(fields: [adminId], references: [id])
+  adminId       String
+  application   Application? @relation(fields: [applicationId], references: [id])
+  applicationId String?
+  createdAt     DateTime     @default(now())
+}
+
+model School {
+  id           String        @id @default(cuid())
+  name         String
+  slug         String        @unique
+  address      String?
+  phone        String?
+  email        String?
+  website      String?
+  description  String?
+  logoUrl      String?
+  admins       Admin[]
+  applications Application[]
+  invitations  Invitation[]
+  classes      Class[]
+  grades       Grade[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+model Invitation {
+  id        String   @id @default(cuid())
+  code      String   @unique
+  role      Role     @default(registrar)
+  school    School   @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  schoolId  String
+  used      Boolean  @default(false)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model Grade {
+  id        String   @id @default(cuid())
+  level     String
+  school    School   @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  schoolId  String
+  classes   Class[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([schoolId, level])
+  @@index([schoolId])
+}
+
+model Class {
+  id           String        @id @default(cuid())
+  name         String
+  gradeLevel   String
+  gradeId      String?
+  gradeRef     Grade?        @relation(fields: [gradeId], references: [id])
+  description  String?
+  capacity     Int?
+  school       School        @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  schoolId     String
+  applications Application[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  @@index([schoolId])
+  @@index([schoolId, gradeLevel])
+  @@index([gradeId])
+}
