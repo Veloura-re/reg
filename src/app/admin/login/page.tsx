@@ -144,9 +144,14 @@ function LoginForm() {
                                 NODE_SECURE
                             </span>
                         </div>
-                        <Link href="/admin/signup" className="text-[11px] text-navy/40 uppercase tracking-[0.4em] hover:text-gold transition-colors font-black group flex items-center gap-3">
-                            Need Access? <span className="text-gold group-hover:scale-105 transition-transform">Provision Node</span>
-                        </Link>
+                        <div className="flex flex-col gap-4">
+                            <Link href="/admin/signup" className="text-[11px] text-navy/40 uppercase tracking-[0.4em] hover:text-gold transition-colors font-black group flex items-center gap-3">
+                                Need Access? <span className="text-gold group-hover:scale-105 transition-transform">Provision Node</span>
+                            </Link>
+                            <Link href="/admin/forgot-password" className="text-[10px] text-navy/30 uppercase tracking-[0.4em] hover:text-gold transition-colors font-black w-fit">
+                                Lost Access Pass?
+                            </Link>
+                        </div>
                     </div>
                 </form>
             </GlassCard>

@@ -25,10 +25,12 @@ model Admin {
   name      String
   role      Role     @default(registrar)
   school    School?  @relation(fields: [schoolId], references: [id])
-  schoolId  String?
-  logs      AuditLog[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  schoolId         String?
+  logs             AuditLog[]
+  resetToken       String?   @unique
+  resetTokenExpiry DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
 }
 
 model Application {
