@@ -67,9 +67,9 @@ body {
 /* Visionary Glassmorphism */
 .glass-panel {
   background: var(--card-bg);
-  backdrop-filter: blur(12px);
-  /* Significantly lighter for GPU */
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(8px);
+  /* Optimized for performance */
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--card-border);
   box-shadow: 0 10px 40px -10px rgba(0, 26, 61, 0.05);
   background-image: linear-gradient(135deg,
@@ -79,6 +79,7 @@ body {
   /* Strict Hardware Acceleration */
   will-change: transform, backdrop-filter;
   transform: translateZ(0);
+  backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
 }
 

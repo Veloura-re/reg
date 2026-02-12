@@ -38,7 +38,7 @@ function FileUpload({ label, onUpload }: { label: string, onUpload: (f: File) =>
                     {label}
                 </label>
             </div>
-            <label className="flex flex-col items-center justify-center w-full h-[140px] border-2 border-dashed border-navy/5 rounded-[2.5rem] hover:border-gold/40 hover:bg-gold/5 transition-all cursor-pointer group backdrop-blur-xl bg-white/50 relative overflow-hidden shadow-sm">
+            <label className="flex flex-col items-center justify-center w-full h-[140px] border-2 border-dashed border-navy/5 rounded-[2.5rem] hover:border-gold/40 hover:bg-gold/5 transition-all cursor-pointer group backdrop-blur-md bg-white/50 relative overflow-hidden shadow-sm">
                 <div className="absolute inset-0 bg-gradient-to-br from-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="flex flex-col items-center justify-center pt-5 pb-6 relative z-10">
                     <div className="p-4 bg-navy/5 rounded-2xl mb-4 group-hover:bg-gold/10 group-hover:text-gold transition-all duration-500 group-hover:scale-110 shadow-sm">
@@ -251,7 +251,7 @@ export default function SchoolRegisterPage() {
                         </p>
                     </div>
 
-                    <GlassCard className="p-8 md:p-14 bg-white/70 border-navy/5 shadow-2xl shadow-navy/5 backdrop-blur-xl relative overflow-hidden">
+                    <GlassCard className="p-8 md:p-14 bg-white/70 border-navy/5 shadow-2xl shadow-navy/5 backdrop-blur-lg relative overflow-hidden">
                         {/* Top edge accent */}
                         <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
 
@@ -581,8 +581,8 @@ const SuccessPage = ({ schoolName, trackingCode, onRegisterAnother }: { schoolNa
     return (
         <div className="min-h-screen bg-white text-navy selection:bg-emerald-500/30 relative overflow-hidden font-rajdhani">
             {/* Decorative ambient glows */}
-            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/[0.04] rounded-full blur-[120px] pointer-events-none" />
-            <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-gold/[0.03] rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/[0.04] rounded-full blur-[80px] pointer-events-none" />
+            <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-gold/[0.03] rounded-full blur-[60px] pointer-events-none" />
 
             <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 py-12">
                 <motion.div

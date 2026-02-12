@@ -59,7 +59,7 @@ function LoginForm() {
         >
             {/* Branding Header */}
             <div className="text-center space-y-6 mb-12">
-                <div className="inline-flex items-center justify-center p-8 rounded-[3rem] bg-white border border-navy/10 shadow-[0_20px_40px_rgba(0,0,0,0.05)] group cursor-default backdrop-blur-3xl relative overflow-hidden">
+                <div className="inline-flex items-center justify-center p-8 rounded-[3rem] bg-white border border-navy/10 shadow-[0_20px_40px_rgba(0,0,0,0.05)] group cursor-default backdrop-blur-lg relative overflow-hidden">
                     <div className="absolute inset-0 bg-emerald-500/[0.03] animate-pulse" />
                     <ShieldCheck size={48} className="text-emerald-600 group-hover:scale-110 transition-all duration-700 relative z-10" />
                 </div>
@@ -69,7 +69,7 @@ function LoginForm() {
                 </div>
             </div>
 
-            <GlassCard className="p-10 md:p-12 bg-white/70 border-navy/5 shadow-2xl shadow-navy/5 backdrop-blur-3xl rounded-[3rem] relative overflow-hidden">
+            <GlassCard className="p-10 md:p-12 bg-white/70 border-navy/5 shadow-2xl shadow-navy/5 backdrop-blur-xl rounded-[3rem] relative overflow-hidden">
                 <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
 
                 <form onSubmit={handleSubmit} className="relative z-10 space-y-10">

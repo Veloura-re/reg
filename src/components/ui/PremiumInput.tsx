@@ -21,7 +21,7 @@ export const PremiumInput = ({ label, icon, className, value, onFocus, onBlur, .
             </div>
             <div
                 className={cn(
-                    "relative flex items-center transition-all duration-300 rounded-2xl border bg-white/50 backdrop-blur-xl overflow-hidden",
+                    "relative flex items-center transition-all duration-300 rounded-2xl border bg-white/50 backdrop-blur-md overflow-hidden",
                     isFocused
                         ? "border-gold/50 shadow-[0_0_25px_rgba(197,160,40,0.1)] ring-1 ring-gold/10"
                         : "border-navy/5 hover:border-navy/10"

@@ -37,17 +37,17 @@ export const AnimatedBackground = () => {
                         x: moveX,
                         y: moveY,
                     }}
-                    className="absolute top-[-10%] right-[-10%] w-[70%] h-[70%] bg-emerald-500/[0.08] blur-[150px] rounded-full"
+                    className="absolute top-[-10%] right-[-10%] w-[70%] h-[70%] bg-emerald-500/[0.08] blur-[80px] rounded-full"
                 />
                 <motion.div
                     style={{
                         x: useTransform(moveX, (val: number) => -val),
                         y: useTransform(moveY, (val: number) => -val),
                     }}
-                    className="absolute bottom-[-10%] left-[-10%] w-[70%] h-[70%] bg-[#001A3D]/[0.05] blur-[150px] rounded-full"
+                    className="absolute bottom-[-10%] left-[-10%] w-[70%] h-[70%] bg-[#001A3D]/[0.05] blur-[80px] rounded-full"
                 />
                 <motion.div
-                    className="absolute top-[20%] left-[20%] w-[50%] h-[50%] bg-[#C5A028]/[0.04] blur-[120px] rounded-full"
+                    className="absolute top-[20%] left-[20%] w-[50%] h-[50%] bg-[#C5A028]/[0.04] blur-[60px] rounded-full"
                 />
             </div>
 
